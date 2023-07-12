@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+(exec bwrap \
+  --ro-bind "/usr/share" "/usr/share" \
+  --ro-bind "/usr/lib" "/usr/lib" \
+  --ro-bind "/usr/lib64" "/usr/lib64" \
+  --tmpfs "/usr/lib/modules" \
+  --tmpfs "/usr/lib/systemd" \
+  --symlink "/usr/lib" "/lib" \
+  --symlink "/usr/lib64" "/lib64" \
+  --ro-bind "/usr/bin" "/usr/bin" \
+  --symlink "/usr/bin" "/bin" \
+  --setenv "/usr/bin" "/usr/bin" \
+  --ro-bind "/etc/fonts" "/etc/fonts" \
+  --ro-bind "/etc/resolv.conf" "/etc/resolv.conf" \
+  --ro-bind "/etc/ssl" "/etc/ssl" \
+  --ro-bind "/etc/ca-certificates" "/etc/ca-certificates" \
+  --ro-bind "/etc/localtime" "/etc/localtime" \
+  --ro-bind "$HOME/.bashbox/machine-id" "/etc/machine-id" \
+  --ro-bind "/etc/proxychains.conf" "/etc/proxychains.conf" \
+  --proc "/proc" \
+  --dev "/dev" \
+  --tmpfs "/tmp" \
+  --tmpfs "/run" \
+  --unsetenv "DBUS_SESSION_BUS_ADDRESS" \
+  --setenv "HOME" "/home/pus1hing" \
+  --setenv "USER" "/home/pus1hing" \
+  --setenv "LOGNAME" "/home/pus1hing" \
+  --bind "$HOME/check" "/home/pus1hing/build" \
+  --bind "$HOME/.curlrc" "/home/pus1hing/.curlrc" \
+  --bind "$HOME/.bashbox/.tmux.conf" "/home/pus1hing/.tmux.conf" \
+  --bind "$HOME/.bashbox/.zshrc" "/home/pus1hing/.zshrc" \
+  --bind "$HOME/.bashbox/.config/proxychains/proxychains.conf" "/home/pus1hing/.config/proxychains/proxychains.conf" \
+  --bind "$HOME/.bashbox/.gitconfig" "/home/pus1hing/.gitconfig" \
+  --bind "$HOME/.bashbox/.config/nvim" "/home/pus1hing/.config/nvim" \
+  --bind "$HOME/.bashbox/.config/yarn" "/home/pus1hing/.config/yarn" \
+  --bind "$HOME/.bashbox/.config/fish" "/home/pus1hing/.config/fish" \
+  --bind "$HOME/.bashbox/.local" "/home/pus1hing/.local" \
+  --hostname "ut68iiivae188" \
+     --unshare-user \
+     --unshare-pid \
+     --unshare-uts \
+     --unshare-cgroup \
+/bin/fish) \
+11< <(getent passwd $UID 65534) \
+12< <(getent group $(id -g) 65534) \
+
