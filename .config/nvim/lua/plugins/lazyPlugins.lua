@@ -26,6 +26,7 @@ local plugins = {
   'dinhhuy258/git.nvim',
   'tjdevries/colorbuddy.nvim',
   'norcalli/nvim-colorizer.lua',          --  css color
+  'github/copilot.vim',
 
   {
   'hrsh7th/nvim-cmp',
@@ -41,6 +42,7 @@ local plugins = {
   { 'echasnovski/mini.statusline', version = false },
   { 'echasnovski/mini.surround', version = false },
   { 'echasnovski/mini.comment', version = false },
+  { 'lukas-reineke/indent-blankline.nvim', event = 'VeryLazy' },
 
   {
     'nvim-telescope/telescope-file-browser.nvim',

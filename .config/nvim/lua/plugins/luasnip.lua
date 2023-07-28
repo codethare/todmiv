@@ -31,6 +31,6 @@ require("snippets.lua")
 require("snippets.markdown")
 
 vim.cmd[[
-  imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>'
+  imap <silent><expr> <C-l> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-l>'
 ]]
 
